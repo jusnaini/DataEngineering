@@ -54,10 +54,9 @@ $ conda activate zoomcamp-dev-env
 ```
 
 # Docker + Postgres
-## Introduction to Docker
+## [Introduction to Docker](1-Introduction-to-Docker.md)
 - Why do we need Docker
 - Creating a simple 'data'pipeline in Docker
-
 
 ## Ingesting NY Taxi Data to Postgres
 - Running Postgress locally with Docker
