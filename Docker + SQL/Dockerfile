@@ -1,5 +1,9 @@
-FROM python:3.9
+FROM python:3.13.5
 
-RUN pip install pandas
+RUN apt-get update && apt-get install -y wget
+RUN pip install pandas sqlalchemy psycopg2
 
-ENTRYPOINT [ "bash" ] 
+WORKDIR /app
+COPY ingest_data.py ingest_data.py 
+
+ENTRYPOINT [ "python", "ingest_data.py" ]
