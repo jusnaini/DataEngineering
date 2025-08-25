@@ -4,8 +4,22 @@ This note describes how to dockerize an ingestion pipeline for the NY Taxi datas
 Once built, the pipeline can be easily deployed using Docker to load data into a pre-created database (ny_taxi).
 
 ## 1. Create the ingestion pipeline script
+Start with a simple [test script](pipeline.py) to understand how CLI arguments are parsed:
 
-Save the following as **```ingest_data.py```**:
+```python
+import sys
+import argparse
+
+import pandas as pd
+
+print("Starting the data processing pipeline...")
+print (sys.argv)
+
+date = sys.argv[1]
+print (f'Date provided: {date}')
+```
+
+Then save the following as **```ingest_data.py```**:
 ```python
 #!/usr/bin/env python
 # coding: utf-8
@@ -215,3 +229,29 @@ docker run -it \
 
 ✅ At this point, the ingestion pipeline is dockerized and can load data directly into the Postgres container.
 
+Protip:
+
+```bash
+URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
+
+docker run -it --rm \
+  --network=pg-network \
+  taxi_ingest:v001 \
+    --user=root \
+    --password=root \
+    --host=pg-database \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=yellow_taxi_trips \
+    --url=${URL}
+```
+
+🔑 What --rm does:
+
+Once the ingestion script finishes and the container exits, Docker will remove it automatically.
+
+This is great for one-off jobs (like ingestion, ETL tasks, testing).
+
+Saves you from cluttering your system with stopped containers (docker ps -a).
+
+👉 For long-running services (like postgres, pgAdmin, or web apps), don’t use --rm, because you usually want those containers to restart if stopped, and keep their state.
