@@ -219,6 +219,16 @@ docker stop <container_id>
 
 # Remove a container
 docker rm <container_id>
+
+
+# List all volumes
+docker volume ls
+
+# Inspect a specific volume
+docker volume inspect <volume_name>
+
+#Remove a volume
+docker volume rm <volume_name>
 ```
 
 ### Container Access
@@ -228,8 +238,9 @@ docker exec -it <container_id> bash
 
 # Attach to a container's shell
 docker attach <container_id>
-
-Building Custom Images
+```
+### Building Custom Images
+```bash
 # Build an image from a Dockerfile
 docker build -t my_image:latest .
 
