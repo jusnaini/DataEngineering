@@ -13,18 +13,33 @@ When your solution has SQL or shell commands and not code
 (e.g. python files) file format, include them directly in
 the README file of your repository.
 
-
 ## Question 1. Understanding Docker images
 
 Run docker with the `python:3.13` image. Use an entrypoint `bash` to interact with the container.
 
 What's the version of `pip` in the image?
 
-- 25.3
+- `25.3`
 - 24.3.1
 - 24.2.1
 - 23.3.1
 
+Dockerfile:
+
+```Dockerfile
+FROM python:3.13
+
+CMD [ "bash" ]
+```
+
+Run:
+
+```bash
+docker build -t test:pip .
+docker run -it test:pip
+
+> pip --version
+```
 
 ## Question 2. Understanding Docker networking and docker-compose
 
@@ -65,11 +80,10 @@ volumes:
 - postgres:5433
 - localhost:5432
 - db:5433
-- postgres:5432
+- `postgres:5432`
 - db:5432
 
-If multiple answers are correct, select any 
-
+If multiple answers are correct, select any
 
 ## Prepare the Data
 
@@ -90,10 +104,9 @@ wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/misc/taxi_z
 For the trips in November 2025 (lpep_pickup_datetime between '2025-11-01' and '2025-12-01', exclusive of the upper bound), how many trips had a `trip_distance` of less than or equal to 1 mile?
 
 - 7,853
-- 8,007
+- `8,007`
 - 8,254
 - 8,421
-
 
 ## Question 4. Longest trip for each day
 
@@ -101,21 +114,19 @@ Which was the pick up day with the longest trip distance? Only consider trips wi
 
 Use the pick up time for your calculations.
 
-- 2025-11-14
+- `2025-11-14`
 - 2025-11-20
 - 2025-11-23
 - 2025-11-25
-
 
 ## Question 5. Biggest pickup zone
 
 Which was the pickup zone with the largest `total_amount` (sum of all trips) on November 18th, 2025?
 
-- East Harlem North
+- `East Harlem North`
 - East Harlem South
 - Morningside Heights
 - Forest Hills
-
 
 ## Question 6. Largest tip
 
@@ -128,7 +139,6 @@ Note: it's `tip` , not `trip`. We need the name of the zone, not the ID.
 - East Harlem North
 - LaGuardia Airport
 
-
 ## Terraform
 
 In this section homework we'll prepare the environment by creating resources in GCP with Terraform.
@@ -139,26 +149,25 @@ Copy the files from the course repo
 
 Modify the files as necessary to create a GCP Bucket and Big Query Dataset.
 
-
 ## Question 7. Terraform Workflow
 
 Which of the following sequences, respectively, describes the workflow for:
+
 1. Downloading the provider plugins and setting up backend,
 2. Generating proposed changes and auto-executing the plan
 3. Remove all resources managed by terraform`
 
 Answers:
+
 - terraform import, terraform apply -y, terraform destroy
 - teraform init, terraform plan -auto-apply, terraform rm
 - terraform init, terraform run -auto-approve, terraform destroy
 - terraform init, terraform apply -auto-approve, terraform destroy
 - terraform import, terraform apply -y, terraform rm
 
-
 ## Submitting the solutions
 
 * Form for submitting: https://courses.datatalks.club/de-zoomcamp-2026/homework/hw1
-
 
 ## Learning in Public
 
@@ -197,7 +206,6 @@ You can sign up here: https://github.com/DataTalksClub/data-engineering-zoomcamp
 
 ### Example post for Twitter/X
 
-
 ```
 🐳 Module 1 of Data Engineering Zoomcamp done!
 
@@ -210,5 +218,3 @@ My solution: <LINK>
 
 Free course by @DataTalksClub: https://github.com/DataTalksClub/data-engineering-zoomcamp/
 ```
-
-
