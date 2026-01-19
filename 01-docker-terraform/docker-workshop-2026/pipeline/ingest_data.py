@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import click
+import click # type: ignore
 import pandas as pd
-from sqlalchemy import create_engine
-from tqdm.auto import tqdm
+from sqlalchemy import create_engine # type: ignore
+from tqdm.auto import tqdm # type: ignore
 
 dtype = {
     "VendorID": "Int64",
@@ -50,7 +50,7 @@ def run(pg_user, pg_pass, pg_host, pg_port, pg_db, year, month, target_table, ch
 
     df_iter = pd.read_csv(
         url,
-        dtype=dtype,
+        dtype=dtype, # type: ignore
         parse_dates=parse_dates,
         iterator=True,
         chunksize=chunksize,
@@ -74,4 +74,4 @@ def run(pg_user, pg_pass, pg_host, pg_port, pg_db, year, month, target_table, ch
         )
 
 if __name__ == '__main__':
-    run()
+    run() # type: ignore
